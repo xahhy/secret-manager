@@ -49,6 +49,9 @@ pipeline {
                   npm publish
                   '''
               }
+              script{
+                  currentBuild.displayName = "#${BUILD_NUMBER} ${params.version}"
+              }
             }
         }
     }
