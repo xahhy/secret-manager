@@ -2,7 +2,7 @@ pipeline {
     agent { 
       docker { 
         image 'node:8.16-alpine' 
-        args '-v $HOME/.npm:/root/.npm'
+        args '-u root -v $HOME/.npm:/root/.npm'
       } 
     }
     parameters {
