@@ -1,12 +1,12 @@
 pipeline {
     agent { docker { image 'node:10.16' } }
     parameters {
-      string(name: 'version', defaultValue: '1.0.0', description: 'Package Version')
+      string(name: 'version', defaultValue: '', description: 'Package Version')
     }
     stages {
         stage('dependency') {
           steps{
-            sh 'npm ci'
+            sh 'npm ci --prefer-offline --no-audit'
           }
         }
 
@@ -30,6 +30,11 @@ pipeline {
         }
 
         stage('publish') {
+            when {
+                allOf {
+                    expression { params.version != '' }
+                }
+            }
             steps{
               withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
                 sh '''
