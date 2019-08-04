@@ -35,7 +35,7 @@ pipeline {
                 sh '''
                   echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
                   cat ~/.npmrc
-                  npm version --no-git-tag-version \${version}
+                  npm version --no-git-tag-version --allow-same-version \${version}
                   npm publish
                   '''
               }
