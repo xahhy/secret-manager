@@ -1,6 +1,12 @@
 pipeline {
     agent { docker { image 'node:10.16' } }
     stages {
+        stage('dependency') {
+          steps{
+            sh 'npm ci'
+          }
+        }
+
         stage('test') {
           steps{
             sh 'npm test'
