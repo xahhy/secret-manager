@@ -27,9 +27,15 @@ pipeline {
         }
 
         stage('publish') {
-          steps{
-            sh 'npm publish'
-          }
+            steps{
+              withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
+                sh '''
+                  echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
+                  cat ~/.npmrc
+                  npm publish
+                  '''
+              }
+            }
         }
     }
 }
