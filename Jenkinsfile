@@ -35,7 +35,7 @@ pipeline {
                 sh '''
                   echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
                   cat ~/.npmrc
-                  npm version ${params.version}
+                  npm version \${params.version}
                   npm publish
                   '''
               }
