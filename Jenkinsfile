@@ -1,7 +1,7 @@
 pipeline {
     agent { docker { image 'node:10.16' } }
     parameters {
-      string(name: 'version', description: 'Package Version')
+      string(name: 'version', defaultValue: '', description: 'Package Version')
     }
     stages {
         stage('dependency') {
@@ -32,7 +32,7 @@ pipeline {
         stage('publish') {
           when {
                 allOf {
-                    expression { params.version != null }
+                    expression { params.version != '' }
                 }
             }
             steps{
