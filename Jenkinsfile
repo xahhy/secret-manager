@@ -1,8 +1,8 @@
-pipeline {
+node {
     agent { 
       docker { 
         image 'node:8.16-alpine' 
-        args '-v $HOME/.npm:/root/.npm'
+        args '-v /home/ec2-user/.npm:/root/.npm'
       } 
     }
     parameters {
@@ -44,8 +44,8 @@ pipeline {
             steps{
               withCredentials([string(credentialsId: 'NPM_TOKEN', variable: 'NPM_TOKEN')]) {
                 sh '''
-                  echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > ~/.npmrc
-                  cat ~/.npmrc
+                  echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > /home/ec2-user/.npmrc
+                  cat /home/ec2-user/.npmrc
                   npm version --no-git-tag-version --allow-same-version \${version}
                   npm publish
                   '''
