@@ -7,6 +7,9 @@
     "test": "jest"
   },
   "keywords": [],
+  "repository": {
+    "url": "https://github.com/xahhy/secret-manager.git"
+  },
   "author": "hhy",
   "license": "ISC",
   "devDependencies": {
