@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('dependency') {
           steps{
-            sh 'npm ci'
+            sh 'npm ci --prefer-offline --no-audit'
           }
         }
 
