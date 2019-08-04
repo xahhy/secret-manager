@@ -1,7 +1,7 @@
 pipeline {
     agent { 
       docker { 
-        image 'node:lts-alpine' 
+        image 'node:8.16-alpine' 
         args '-v $HOME/.npm:/root/.npm'
       } 
     }
@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('dependency') {
           steps{
+            sh 'npm --version'
             sh 'npm ci --prefer-offline --no-audit'
           }
         }
