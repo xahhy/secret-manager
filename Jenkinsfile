@@ -2,11 +2,15 @@ pipeline {
     agent { docker { image 'node:10.16' } }
     stages {
         stage('test') {
-          sh 'npm test'
+          steps{
+            sh 'npm test'
+          }
         }
 
         stage('audit') {
-          sh 'npm audit'
+          steps{
+            sh 'npm audit'
+          }
         }
 
         stage('build') {
@@ -17,7 +21,9 @@ pipeline {
         }
 
         stage('publish') {
-          sh 'npm publish'
+          steps{
+            sh 'npm publish'
+          }
         }
     }
 }
