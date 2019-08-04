@@ -30,7 +30,7 @@ pipeline {
         }
 
         stage('publish') {
-          when {
+            when {
                 allOf {
                     expression { params.version != '' }
                 }
