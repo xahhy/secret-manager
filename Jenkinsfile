@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'node:10.16' } }
+    agent { 
+      docker { 
+        image 'node:10.16' 
+        args '-v $HOME/.npm:/root/.npm'
+      } 
+    }
     parameters {
       string(name: 'version', defaultValue: '', description: 'Package Version')
     }
