@@ -1,5 +1,8 @@
 pipeline {
     agent { docker { image 'node:10.16' } }
+    parameters {
+      string(name: 'version', defaultValue: '1.0.0', description: 'Package Version')
+    }
     stages {
         stage('dependency') {
           steps{
